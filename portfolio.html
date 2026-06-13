@@ -1,0 +1,798 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Sakthi Priya R | Engineering Student & Intern</title>
+<style>
+  :root {
+    --bg: #f6f4fb;
+    --bg-2: #ece8f5;
+    --surface: #ffffff;
+    --text: #1c1b29;
+    --muted: #6b6781;
+    --accent: #f5821f;
+    --accent-soft: #fde9d7;
+    --violet: #8b7cf6;
+    --green: #1fa97a;
+    --green-bg: #e3f6ee;
+    --border: #e6e2f0;
+    --shadow: 0 8px 28px rgba(50, 40, 90, 0.07);
+    --radius: 14px;
+  }
+
+  [data-theme="dark"] {
+    --bg: #15131f;
+    --bg-2: #1c1a29;
+    --surface: #211f30;
+    --text: #f3f1fa;
+    --muted: #9d98b5;
+    --accent: #f5821f;
+    --accent-soft: #3a2a1c;
+    --violet: #a89bff;
+    --green: #4fd9a8;
+    --green-bg: #1b3a30;
+    --border: #322f44;
+    --shadow: 0 8px 28px rgba(0, 0, 0, 0.4);
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    font-family: 'Segoe UI', system-ui, sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    line-height: 1.6;
+    transition: background 0.3s, color 0.3s;
+  }
+
+  a { color: inherit; }
+
+  /* ===== HEADER ===== */
+  header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1.2rem 6%;
+    background: var(--bg);
+  }
+
+  .logo {
+    font-weight: 800;
+    font-size: 1.2rem;
+    letter-spacing: 1px;
+  }
+
+  nav ul {
+    display: flex;
+    gap: 2rem;
+    list-style: none;
+  }
+
+  nav a {
+    text-decoration: none;
+    font-size: 0.9rem;
+    font-weight: 600;
+    color: var(--muted);
+    transition: color 0.2s;
+  }
+
+  nav a:hover { color: var(--accent); }
+
+  .theme-toggle {
+    border: none;
+    background: var(--surface);
+    box-shadow: var(--shadow);
+    border-radius: 50%;
+    width: 38px;
+    height: 38px;
+    cursor: pointer;
+    font-size: 1.1rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  @media (max-width: 720px) {
+    nav { display: none; }
+  }
+
+  /* ===== HERO ===== */
+  .hero {
+    padding: 1rem 6% 2.5rem;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 2.5rem;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  .hero-text { flex: 1 1 360px; }
+
+  .badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    background: var(--green-bg);
+    color: var(--green);
+    font-size: 0.78rem;
+    font-weight: 700;
+    padding: 0.35rem 0.9rem;
+    border-radius: 50px;
+    margin-bottom: 1rem;
+  }
+
+  .badge::before {
+    content: '';
+    width: 7px;
+    height: 7px;
+    border-radius: 50%;
+    background: var(--green);
+  }
+
+  .hero-text h1 {
+    font-size: clamp(2.6rem, 7vw, 4.2rem);
+    font-weight: 800;
+    line-height: 1.05;
+    margin-bottom: 0.6rem;
+  }
+
+  .accent-dot {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    background: var(--accent);
+    margin: 0.6rem 0 1rem;
+  }
+
+  .hero-text p {
+    color: var(--muted);
+    max-width: 480px;
+    margin-bottom: 1.2rem;
+    font-size: 0.95rem;
+  }
+
+  .pills {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.6rem;
+    margin-bottom: 1.4rem;
+  }
+
+  .pill {
+    border: 1px solid var(--border);
+    color: var(--muted);
+    font-size: 0.78rem;
+    font-weight: 600;
+    padding: 0.35rem 0.9rem;
+    border-radius: 50px;
+    background: var(--surface);
+  }
+
+  .hero-actions { display: flex; gap: 0.8rem; flex-wrap: wrap; }
+
+  .btn {
+    padding: 0.75rem 1.6rem;
+    border-radius: 8px;
+    font-weight: 700;
+    font-size: 0.9rem;
+    text-decoration: none;
+    transition: transform 0.2s, opacity 0.2s;
+    border: none;
+    cursor: pointer;
+  }
+
+  .btn-primary { background: var(--accent); color: #fff; }
+  .btn-secondary { background: var(--surface); color: var(--text); border: 1px solid var(--border); }
+  .btn:hover { transform: translateY(-2px); }
+
+  /* hero card */
+  .hero-card {
+    flex: 1 1 320px;
+    max-width: 380px;
+    background: var(--surface);
+    border-radius: 20px;
+    padding: 1.8rem;
+    box-shadow: var(--shadow);
+    border: 1px solid var(--border);
+  }
+
+  .hero-card-top {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    margin-bottom: 1.4rem;
+  }
+
+  .avatar {
+    width: 52px;
+    height: 52px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, var(--accent), var(--violet));
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #fff;
+    font-weight: 800;
+    font-size: 1.1rem;
+  }
+
+  .hero-card-top h3 { font-size: 1.05rem; }
+  .hero-card-top span { font-size: 0.8rem; color: var(--muted); }
+
+  .stat-row {
+    display: flex;
+    gap: 0.7rem;
+    margin-bottom: 1.4rem;
+  }
+
+  .stat {
+    flex: 1;
+    background: var(--bg-2);
+    border-radius: 10px;
+    padding: 0.7rem 0.4rem;
+    text-align: center;
+  }
+
+  .stat strong { display: block; font-size: 1.2rem; color: var(--accent); }
+  .stat span { font-size: 0.68rem; color: var(--muted); }
+
+  .info-list {
+    display: flex;
+    flex-direction: column;
+    gap: 0.6rem;
+    margin-bottom: 1.2rem;
+    font-size: 0.85rem;
+  }
+
+  .info-list div { display: flex; gap: 0.6rem; align-items: center; }
+  .info-list .icon { color: var(--violet); }
+
+  .open-status {
+    background: var(--green-bg);
+    color: var(--green);
+    text-align: center;
+    border-radius: 50px;
+    padding: 0.5rem;
+    font-size: 0.8rem;
+    font-weight: 700;
+  }
+
+  /* marquee */
+  .marquee-wrap {
+    border-top: 1px solid var(--border);
+    border-bottom: 1px solid var(--border);
+    overflow: hidden;
+    padding: 0.9rem 0;
+    background: var(--bg);
+  }
+
+  .marquee {
+    display: flex;
+    gap: 2.5rem;
+    white-space: nowrap;
+    animation: scroll 28s linear infinite;
+    font-size: 0.82rem;
+    font-weight: 600;
+    color: var(--muted);
+  }
+
+  .marquee span::before { content: '• '; color: var(--accent); }
+
+  @keyframes scroll {
+    from { transform: translateX(0); }
+    to { transform: translateX(-50%); }
+  }
+
+  /* ===== SECTIONS ===== */
+  .section { padding: 4rem 6%; }
+  .section-alt { background: var(--bg-2); }
+
+  .eyebrow {
+    color: var(--accent);
+    font-size: 0.78rem;
+    font-weight: 800;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    margin-bottom: 0.6rem;
+  }
+
+  .section h2 {
+    font-size: clamp(1.7rem, 4vw, 2.4rem);
+    font-weight: 800;
+    margin-bottom: 1rem;
+  }
+
+  .section h2 em {
+    color: var(--violet);
+    font-style: italic;
+  }
+
+  .section > p.lead {
+    color: var(--muted);
+    max-width: 680px;
+    margin-bottom: 2rem;
+    font-size: 0.95rem;
+  }
+
+  /* About grid */
+  .about-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 2.5rem;
+  }
+
+  @media (min-width: 860px) {
+    .about-grid { grid-template-columns: 1.4fr 1fr; }
+  }
+
+  .about-text p { color: var(--muted); margin-bottom: 1rem; font-size: 0.92rem; }
+  .about-text strong { color: var(--text); }
+
+  .quote {
+    background: var(--surface);
+    border-left: 3px solid var(--accent);
+    border-radius: 10px;
+    padding: 1.2rem 1.4rem;
+    font-style: italic;
+    color: var(--text);
+    margin: 1.2rem 0;
+    box-shadow: var(--shadow);
+  }
+
+  .info-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 0.8rem;
+    margin-top: 1.5rem;
+  }
+
+  .info-card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 0.8rem 1rem;
+  }
+
+  .info-card label {
+    display: block;
+    font-size: 0.68rem;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    color: var(--muted);
+    margin-bottom: 0.2rem;
+  }
+
+  .info-card div.value { font-weight: 700; font-size: 0.92rem; }
+  .info-card .status { color: var(--green); }
+
+  /* journey */
+  .journey-title {
+    font-size: 0.78rem;
+    font-weight: 800;
+    letter-spacing: 2px;
+    color: var(--violet);
+    text-transform: uppercase;
+    margin-bottom: 1.2rem;
+    border-top: 1px dashed var(--border);
+    padding-top: 1.2rem;
+  }
+
+  .journey-item { display: flex; gap: 0.9rem; margin-bottom: 1.3rem; }
+
+  .journey-dot {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    background: var(--accent);
+    margin-top: 0.4rem;
+    flex-shrink: 0;
+  }
+
+  .journey-item .when {
+    font-size: 0.75rem;
+    color: var(--accent);
+    font-weight: 700;
+    text-transform: uppercase;
+    margin-bottom: 0.2rem;
+  }
+
+  .journey-item .role { font-weight: 700; font-size: 0.95rem; }
+  .journey-item .org { color: var(--muted); font-size: 0.85rem; }
+
+  /* skills grid */
+  .skills-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 1.2rem;
+  }
+
+  @media (min-width: 640px) {
+    .skills-grid { grid-template-columns: repeat(2, 1fr); }
+  }
+
+  @media (min-width: 1024px) {
+    .skills-grid { grid-template-columns: repeat(3, 1fr); }
+  }
+
+  .skill-card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding: 1.3rem;
+    box-shadow: var(--shadow);
+  }
+
+  .skill-card-head {
+    display: flex;
+    align-items: center;
+    gap: 0.7rem;
+    margin-bottom: 0.9rem;
+  }
+
+  .skill-icon {
+    width: 36px;
+    height: 36px;
+    border-radius: 9px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.05rem;
+    background: var(--accent-soft);
+  }
+
+  .skill-card h3 { font-size: 1rem; }
+
+  .chip-row { display: flex; flex-wrap: wrap; gap: 0.5rem; }
+
+  .chip {
+    background: var(--bg-2);
+    color: var(--muted);
+    font-size: 0.75rem;
+    font-weight: 600;
+    padding: 0.3rem 0.7rem;
+    border-radius: 50px;
+  }
+
+  .chip.learning {
+    background: var(--accent-soft);
+    color: var(--accent);
+  }
+
+  /* contact */
+  .contact-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+  }
+
+  @media (min-width: 800px) {
+    .contact-grid { grid-template-columns: 1fr 1.3fr; }
+  }
+
+  .contact-card, .form-card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding: 1.5rem;
+    box-shadow: var(--shadow);
+  }
+
+  .contact-row {
+    display: flex;
+    align-items: center;
+    gap: 0.8rem;
+    padding: 0.7rem 0;
+    border-bottom: 1px solid var(--border);
+    font-size: 0.9rem;
+  }
+
+  .contact-row:last-of-type { border-bottom: none; }
+
+  .contact-row .icon {
+    width: 34px;
+    height: 34px;
+    border-radius: 8px;
+    background: var(--bg-2);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+  }
+
+  .contact-row label { display: block; font-size: 0.68rem; color: var(--muted); text-transform: uppercase; letter-spacing: 1px; }
+  .contact-row div.value { font-weight: 600; font-size: 0.88rem; }
+
+  .availability {
+    margin-top: 1rem;
+    background: var(--green-bg);
+    color: var(--green);
+    border-radius: 10px;
+    padding: 0.8rem 1rem;
+    font-size: 0.85rem;
+  }
+
+  .availability strong { display: block; margin-bottom: 0.2rem; }
+
+  .form-card label {
+    display: block;
+    font-size: 0.78rem;
+    font-weight: 700;
+    margin-bottom: 0.4rem;
+    margin-top: 0.9rem;
+  }
+
+  .form-card label:first-of-type { margin-top: 0; }
+
+  .form-row {
+    display: flex;
+    gap: 1rem;
+    flex-wrap: wrap;
+  }
+
+  .form-row > div { flex: 1 1 200px; }
+
+  .form-card input,
+  .form-card select,
+  .form-card textarea {
+    width: 100%;
+    padding: 0.65rem 0.8rem;
+    border-radius: 8px;
+    border: 1px solid var(--border);
+    background: var(--bg-2);
+    color: var(--text);
+    font-size: 0.85rem;
+    font-family: inherit;
+  }
+
+  .form-card textarea { min-height: 90px; resize: vertical; }
+
+  .form-card button {
+    margin-top: 1.2rem;
+    width: 100%;
+  }
+
+  footer {
+    text-align: center;
+    padding: 1.5rem;
+    font-size: 0.8rem;
+    color: var(--muted);
+    border-top: 1px solid var(--border);
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="logo">SP.</div>
+  <nav>
+    <ul>
+      <li><a href="#home">Home</a></li>
+      <li><a href="#about">About</a></li>
+      <li><a href="#skills">Skills</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+  </nav>
+  <button class="theme-toggle" onclick="toggleTheme()" aria-label="Toggle theme">🌙</button>
+</header>
+
+<!-- HERO -->
+<section class="hero" id="home">
+  <div class="hero-text">
+    <div class="badge">Available for opportunities</div>
+    <h1>Sakthi Priya</h1>
+    <div class="accent-dot"></div>
+    <p>Engineering student at KPR Institute, building real-world skills as an intern at Thiranex. Passionate about crafting clean, purposeful digital solutions.</p>
+    <div class="pills">
+      <span class="pill">BE Undergraduate</span>
+      <span class="pill">Intern @ Thiranex</span>
+      <span class="pill">Tamil Nadu, India</span>
+    </div>
+    <div class="hero-actions">
+      <a href="#skills" class="btn btn-primary">Explore Skills</a>
+      <a href="#contact" class="btn btn-secondary">Get in Touch</a>
+    </div>
+  </div>
+
+  <div class="hero-card">
+    <div class="hero-card-top">
+      <div class="avatar">SP</div>
+      <div>
+        <h3>Sakthi Priya R</h3>
+        <span>Engineering Student & Intern</span>
+      </div>
+    </div>
+    <div class="stat-row">
+      <div class="stat"><strong>B.E.</strong><span>Degree</span></div>
+      <div class="stat"><strong>3+</strong><span>Years Study</span></div>
+      <div class="stat"><strong>6+</strong><span>Skills Gained</span></div>
+    </div>
+    <div class="info-list">
+      <div><span class="icon">🎓</span> KPR Institute of Engg & Tech – B.E.</div>
+      <div><span class="icon">💼</span> Thiranex – Current Intern</div>
+      <div><span class="icon">📍</span> Tamil Nadu, India</div>
+    </div>
+    <div class="open-status">✓ Open to opportunities</div>
+  </div>
+</section>
+
+<div class="marquee-wrap">
+  <div class="marquee">
+    <span>Machine Learning</span><span>REST APIs</span><span>AWS Basics</span><span>Python</span><span>HTML5</span><span>CSS3</span><span>JavaScript</span><span>React</span><span>Git & GitHub</span><span>Linux</span><span>SQL</span>
+    <span>Machine Learning</span><span>REST APIs</span><span>AWS Basics</span><span>Python</span><span>HTML5</span><span>CSS3</span><span>JavaScript</span><span>React</span><span>Git & GitHub</span><span>Linux</span><span>SQL</span>
+  </div>
+</div>
+
+<!-- ABOUT -->
+<section class="section section-alt" id="about">
+  <div class="eyebrow">Who I Am</div>
+  <h2>Curious engineer, <em>eager learner.</em></h2>
+
+  <div class="about-grid">
+    <div class="about-text">
+      <p>Hi, I'm <strong>Sakthi Priya R</strong>, a passionate engineering student currently in my undergraduate journey at <strong>KPR Institute of Engineering and Technology</strong>, one of Tamil Nadu's leading technical institutions.</p>
+      <p>Alongside my studies, I'm gaining hands-on industry experience as an <strong>intern at Thiranex</strong> — where classroom theory meets real-world problem-solving. This has sharpened my technical skills and given me exposure to professional workflows, teamwork, and software development cycles.</p>
+
+      <div class="quote">"Learning never exhausts the mind — it only fuels the next idea."</div>
+
+      <p>I thrive in collaborative environments and love turning complex problems into clean, working code.</p>
+
+      <div class="info-grid">
+        <div class="info-card"><label>Name</label><div class="value">Sakthi Priya R</div></div>
+        <div class="info-card"><label>Degree</label><div class="value">B.E. (Undergraduate)</div></div>
+        <div class="info-card"><label>College</label><div class="value">KPR Institute</div></div>
+        <div class="info-card"><label>Internship</label><div class="value">Thiranex (Intern)</div></div>
+        <div class="info-card"><label>Location</label><div class="value">Tamil Nadu, India</div></div>
+        <div class="info-card"><label>Status</label><div class="value status">Open to Roles</div></div>
+      </div>
+    </div>
+
+    <div>
+      <div class="journey-title">— Journey</div>
+      <div class="journey-item">
+        <div class="journey-dot"></div>
+        <div>
+          <div class="when">2023 – Present</div>
+          <div class="role">Software / Tech Intern</div>
+          <div class="org">Thiranex – Internship</div>
+        </div>
+      </div>
+      <div class="journey-item">
+        <div class="journey-dot"></div>
+        <div>
+          <div class="when">2022 – Present</div>
+          <div class="role">Bachelor of Engineering (B.E.)</div>
+          <div class="org">KPR Institute of Engineering and Technology – Pursuing</div>
+        </div>
+      </div>
+      <div class="journey-item">
+        <div class="journey-dot"></div>
+        <div>
+          <div class="when">Completed</div>
+          <div class="role">Higher Secondary (12th)</div>
+          <div class="org">Tamil Nadu State Board</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SKILLS -->
+<section class="section" id="skills">
+  <div class="eyebrow">What I Know</div>
+  <h2>Education & <em>capabilities.</em></h2>
+  <p class="lead">A blend of academic knowledge from KPR Institute and practical skills developed during my internship at Thiranex.</p>
+
+  <div class="skills-grid">
+    <div class="skill-card">
+      <div class="skill-card-head"><div class="skill-icon">💻</div><h3>Programming</h3></div>
+      <div class="chip-row">
+        <span class="chip">Python</span><span class="chip">C / C++</span><span class="chip">Java</span><span class="chip">JavaScript</span><span class="chip">SQL</span>
+      </div>
+    </div>
+    <div class="skill-card">
+      <div class="skill-card-head"><div class="skill-icon">🌐</div><h3>Web Development</h3></div>
+      <div class="chip-row">
+        <span class="chip">HTML5</span><span class="chip">CSS3</span><span class="chip">JavaScript</span><span class="chip learning">React (Learning)</span><span class="chip">REST APIs</span>
+      </div>
+    </div>
+    <div class="skill-card">
+      <div class="skill-card-head"><div class="skill-icon">🛠️</div><h3>Tools & Platforms</h3></div>
+      <div class="chip-row">
+        <span class="chip">Git & GitHub</span><span class="chip">VS Code</span><span class="chip">Linux</span><span class="chip">MySQL</span><span class="chip">Figma (Basics)</span>
+      </div>
+    </div>
+    <div class="skill-card">
+      <div class="skill-card-head"><div class="skill-icon">🧠</div><h3>Core CS Concepts</h3></div>
+      <div class="chip-row">
+        <span class="chip">Data Structures</span><span class="chip">Algorithms</span><span class="chip">OOP</span><span class="chip">DBMS</span><span class="chip">OS Fundamentals</span>
+      </div>
+    </div>
+    <div class="skill-card">
+      <div class="skill-card-head"><div class="skill-icon">🤝</div><h3>Soft Skills</h3></div>
+      <div class="chip-row">
+        <span class="chip">Team Collaboration</span><span class="chip">Problem Solving</span><span class="chip">Communication</span><span class="chip">Time Management</span><span class="chip">Quick Learning</span>
+      </div>
+    </div>
+    <div class="skill-card">
+      <div class="skill-card-head"><div class="skill-icon">📚</div><h3>Currently Learning</h3></div>
+      <div class="chip-row">
+        <span class="chip learning">React.js</span><span class="chip learning">Node.js</span><span class="chip learning">Cloud (AWS)</span><span class="chip learning">Machine Learning</span><span class="chip learning">UI/UX Design</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section class="section section-alt" id="contact">
+  <div class="eyebrow">Get In Touch</div>
+  <h2>Let's <em>connect</em> and collaborate.</h2>
+  <p class="lead">Always happy to hear from fellow students, recruiters, or collaborators.</p>
+
+  <div class="contact-grid">
+    <div class="contact-card">
+      <div class="contact-row">
+        <div class="icon">✉️</div>
+        <div><label>Email</label><div class="value">sakthipriyar@example.com</div></div>
+      </div>
+      <div class="contact-row">
+        <div class="icon">in</div>
+        <div><label>LinkedIn</label><div class="value">linkedin.com/in/sakthipriyar</div></div>
+      </div>
+      <div class="contact-row">
+        <div class="icon">⌥</div>
+        <div><label>GitHub</label><div class="value">github.com/sakthipriyar</div></div>
+      </div>
+      <div class="contact-row">
+        <div class="icon">📍</div>
+        <div><label>Location</label><div class="value">Tamil Nadu, India</div></div>
+      </div>
+      <div class="availability">
+        <strong>Currently open to:</strong>
+        Internships, project collaborations, hackathon teams, and entry-level opportunities in software development or engineering.
+      </div>
+    </div>
+
+    <div class="form-card">
+      <div class="form-row">
+        <div>
+          <label>Name *</label>
+          <input type="text" placeholder="Your name">
+        </div>
+        <div>
+          <label>Email *</label>
+          <input type="email" placeholder="you@example.com">
+        </div>
+      </div>
+      <label>Subject</label>
+      <select>
+        <option>— Choose a topic —</option>
+        <option>Internship Opportunity</option>
+        <option>Project Collaboration</option>
+        <option>Hackathon Team</option>
+        <option>General Inquiry</option>
+      </select>
+      <label>Message *</label>
+      <textarea placeholder="Your message (at least 15 characters)..."></textarea>
+      <button class="btn btn-primary">📨 Send Message</button>
+    </div>
+  </div>
+</section>
+
+<footer>
+  © 2026 Sakthi Priya R · KPR Institute of Engineering and Technology
+  <br>
+  <a href="#home">Home</a> · <a href="#about">About</a> · <a href="#skills">Skills</a> · <a href="#contact">Contact</a>
+</footer>
+
+<script>
+  function toggleTheme() {
+    const html = document.documentElement;
+    const isDark = html.getAttribute('data-theme') === 'dark';
+    html.setAttribute('data-theme', isDark ? 'light' : 'dark');
+    document.querySelector('.theme-toggle').textContent = isDark ? '🌙' : '☀️';
+  }
+</script>
+
+</body>
+</html>
